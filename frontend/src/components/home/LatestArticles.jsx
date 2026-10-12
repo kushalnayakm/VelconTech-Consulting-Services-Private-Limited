@@ -1,27 +1,39 @@
 import { Link } from 'react-router-dom';
-import SectionHeading from '../common/SectionHeading';
-import BlogCard from '../blog/BlogCard';
+import { ArrowRight } from 'lucide-react';
 import { getAllPosts } from '../../lib/blog';
 
 export default function LatestArticles() {
   const latestPosts = getAllPosts().slice(0, 3);
 
   return (
-    <section className="section-pad bg-white/60">
+    <section className="section-pad">
       <div className="container-page">
-        <SectionHeading
-          eyebrow="Insights"
-          title="Latest technology articles"
-          description="Practical perspectives on cloud, data, cybersecurity, software and related technology topics."
-        />
-        <div className="mt-10 grid gap-5 lg:grid-cols-3">
+        <div className="max-w-3xl">
+          <p className="eyebrow mb-3">Insights</p>
+          <h2 className="font-display text-3xl font-bold tracking-tight text-navy sm:text-4xl">Latest Insights</h2>
+          <p className="body-muted mt-4 text-lg">
+            Short perspectives on cloud, data, cybersecurity, software and related technology topics.
+          </p>
+        </div>
+
+        <div className="mt-8 grid gap-4 md:grid-cols-3">
           {latestPosts.map((post) => (
-            <BlogCard key={post.slug} post={post} />
+            <Link
+              key={post.slug}
+              to={`/blog/${post.slug}`}
+              className="card-surface block p-5 transition hover:-translate-y-0.5 hover:shadow-soft"
+            >
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-copper">{post.category}</p>
+              <h3 className="mt-2 font-display text-lg font-semibold text-navy">{post.title}</h3>
+              <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-navy/65">{post.excerpt}</p>
+            </Link>
           ))}
         </div>
+
         <div className="mt-8">
           <Link to="/blog" className="btn-secondary">
-            Visit the blog
+            Visit the Blog
+            <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
       </div>

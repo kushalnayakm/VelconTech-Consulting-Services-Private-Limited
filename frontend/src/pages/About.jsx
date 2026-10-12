@@ -1,160 +1,277 @@
+import { motion, useReducedMotion } from 'framer-motion';
+import {
+  Building2,
+  Code2,
+  Compass,
+  Eye,
+  FileCode2,
+  Landmark,
+  Network,
+  Server,
+  Smartphone,
+  Terminal,
+} from 'lucide-react';
 import SEO from '../components/common/SEO';
-import PageHero from '../components/common/PageHero';
-import SectionHeading from '../components/common/SectionHeading';
 import CtaBand from '../components/common/CtaBand';
-import { company } from '../data/company';
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 16 },
+  visible: { opacity: 1, y: 0 },
+};
+
+const audience = [
+  {
+    title: 'Businesses',
+    description: 'Building capabilities that support operational efficiency and business growth.',
+    icon: Building2,
+  },
+  {
+    title: 'Institutions',
+    description: 'Supporting digital transformation and technology adoption.',
+    icon: Landmark,
+  },
+  {
+    title: 'Government Organizations',
+    description: 'Supporting technology-enabled services and process improvement.',
+    icon: Network,
+  },
+  {
+    title: 'Other Entities',
+    description: 'Providing technology consulting and customized solutions.',
+    icon: Compass,
+  },
+];
+
+const technologies = [
+  {
+    name: 'Flutter',
+    useCase: 'Cross-platform mobile applications.',
+    advantages: 'High performance, rich UI widgets and a single codebase.',
+    icon: Smartphone,
+  },
+  {
+    name: 'React Native',
+    useCase: 'Cross-platform mobile applications.',
+    advantages: 'Large community, JavaScript-based development and flexibility.',
+    icon: Code2,
+  },
+  {
+    name: 'Java',
+    useCase: 'Native Android applications.',
+    advantages: 'Strong control over application functionality and access to Android features.',
+    icon: Terminal,
+  },
+  {
+    name: 'HTML / CSS / JavaScript',
+    useCase: 'Website and frontend development.',
+    advantages: 'Fundamental web technologies with broad browser support.',
+    icon: FileCode2,
+  },
+  {
+    name: 'Node.js',
+    useCase: 'Web servers and real-time applications.',
+    advantages: 'JavaScript outside the browser and a large ecosystem.',
+    icon: Server,
+  },
+  {
+    name: 'Python',
+    useCase: 'Web development, data science and scripting.',
+    advantages: 'Readable syntax, ease of learning and versatility.',
+    icon: Code2,
+  },
+];
 
 export default function About() {
+  const reduceMotion = useReducedMotion();
+
+  const motionProps = reduceMotion
+    ? {}
+    : {
+        initial: 'hidden',
+        whileInView: 'visible',
+        viewport: { once: true, amount: 0.2 },
+        transition: { duration: 0.4, ease: 'easeOut' },
+        variants: fadeUp,
+      };
+
+  const stagger = reduceMotion
+    ? {}
+    : {
+        initial: 'hidden',
+        whileInView: 'visible',
+        viewport: { once: true, amount: 0.12 },
+        variants: {
+          hidden: {},
+          visible: { transition: { staggerChildren: 0.07 } },
+        },
+      };
+
+  const item = reduceMotion
+    ? {}
+    : {
+        variants: {
+          hidden: { opacity: 0, y: 14 },
+          visible: { opacity: 1, y: 0, transition: { duration: 0.35, ease: 'easeOut' } },
+        },
+      };
+
   return (
     <>
       <SEO
         title="About Us"
-        description="Learn about VelconTech Consulting Services Private Limited — mission, values, leadership team and locations."
+        description="Learn about VelconTech Consulting Services Private Limited — mission, vision, who we serve and technologies we master."
         path="/about"
       />
-      <PageHero
-        eyebrow="About Us"
-        title="Where Technology Customizes"
-        description="VelconTech is a consulting, analytics and technology services firm focused on Data, Cloud and Emerging Technologies."
-      />
 
-      <section className="section-pad">
-        <div className="container-page grid gap-10 lg:grid-cols-[1.2fr_0.8fr]">
-          <div className="space-y-5">
-            {company.about.map((paragraph) => (
-              <p key={paragraph} className="body-muted text-lg">
-                {paragraph}
-              </p>
-            ))}
-            <p className="body-muted text-lg">{company.intro}</p>
-          </div>
-          <aside className="card-surface h-fit p-7">
-            <h2 className="font-display text-xl font-semibold text-navy">Registered Office</h2>
-            <div className="mt-4 space-y-1 text-sm leading-relaxed text-navy/70">
-              {company.registeredOffice.lines.map((line) => (
-                <p key={line}>{line}</p>
-              ))}
-            </div>
-            <div className="mt-6 space-y-2 text-sm text-navy/70">
-              <p>
-                <span className="font-semibold text-navy">Phone:</span> {company.phoneDisplay}
-              </p>
-              <p>
-                <span className="font-semibold text-navy">Email:</span> {company.email}
-              </p>
-              <p>
-                <span className="font-semibold text-navy">Website:</span> {company.website}
-              </p>
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      <section className="section-pad bg-white/70">
-        <div className="container-page">
-          <SectionHeading eyebrow="Mission" title="Our Mission" description={company.mission} />
-        </div>
-      </section>
-
-      <section className="section-pad">
-        <div className="container-page">
-          <SectionHeading
-            eyebrow="Values"
-            title="What guides our work"
-            description="Our approach is grounded in client success, exceptional people, partnership and a fresh perspective on hard problems."
-          />
-          <div className="mt-10 grid gap-5 md:grid-cols-2">
-            {company.values.map((value) => (
-              <div key={value.title} className="card-surface p-6">
-                <h3 className="font-display text-xl font-semibold text-navy">{value.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-navy/65">{value.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section-pad bg-white/70">
-        <div className="container-page">
-          <SectionHeading eyebrow="Leadership" title="Our Team" />
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {company.team.map((member) => (
-              <div key={member.name} className="card-surface p-6 text-center">
-                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-navy via-emerald to-copper text-lg font-bold text-white">
-                  {member.name
-                    .split(' ')
-                    .slice(0, 2)
-                    .map((part) => part[0])
-                    .join('')}
+      <div className="about-shell">
+        <section className="about-band about-band--mist">
+          <div className="about-wrap">
+            <motion.div className="about-intro" {...motionProps}>
+              <p className="eyebrow">About Us</p>
+              <div className="about-intro__grid">
+                <div className="about-intro__main">
+                  <div className="about-intro__accent" aria-hidden="true" />
+                  <div>
+                    <h1 className="about-intro__title">About VelconTech</h1>
+                    <p className="about-intro__subtitle">Consulting, Analytics and Technology Services</p>
+                    <div className="about-intro__copy">
+                      <p>
+                        VelconTech is a consulting, analytics and technology services firm focused on Data, Cloud and
+                        Emerging Technologies. Our uniqueness lies in bringing Business, Technology, Services and Process
+                        together to maximize the end-user experience in today&apos;s digital world.
+                      </p>
+                      <p>
+                        We work with clients on challenging problems in Automation, Service Delivery, Digital Business,
+                        AI and NLP, increasing innovation velocity to deliver NextGen Services.
+                      </p>
+                      <p>
+                        VelconTech also provides process consulting services for process definition, implementation,
+                        auditing and training.
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="mt-4 font-display text-lg font-semibold text-navy">{member.name}</h3>
-                <p className="mt-1 text-sm text-navy/60">{member.role}</p>
+                <aside className="about-intro__aside" aria-hidden="true">
+                  <div className="about-intro__panel">
+                    <span>Data</span>
+                    <span>Cloud</span>
+                    <span>AI &amp; NLP</span>
+                    <span>Automation</span>
+                    <span>Digital Business</span>
+                    <span>Process Consulting</span>
+                  </div>
+                </aside>
               </div>
-            ))}
+            </motion.div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="section-pad">
-        <div className="container-page grid gap-8 lg:grid-cols-2">
-          <div className="card-surface p-7">
-            <h2 className="font-display text-2xl font-semibold text-navy">Customers & Partners</h2>
-            <p className="mt-3 text-sm leading-relaxed text-navy/65">
-              Organizations referenced in our company profile include:
-            </p>
-            <ul className="mt-5 space-y-2">
-              {company.customersAndPartners.map((name) => (
-                <li key={name} className="rounded-xl bg-mist px-4 py-3 text-sm font-semibold text-navy">
-                  {name}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="card-surface p-7">
-            <h2 className="font-display text-2xl font-semibold text-navy">Locations</h2>
-            <div className="mt-4 space-y-4 text-sm leading-relaxed text-navy/70">
-              <div>
-                <p className="font-semibold text-navy">Registered Office — Bangalore, India</p>
-                <p className="mt-1">{company.registeredOffice.lines.slice(1).join(' ')}</p>
-              </div>
-              <div>
-                <p className="font-semibold text-navy">Sales Office Presence</p>
-                <p className="mt-1">{company.salesPresence.join(', ')}</p>
-              </div>
+        <section className="about-band about-band--white">
+          <div className="about-wrap">
+            <div className="about-mv">
+              <motion.article
+                className="about-mv__card"
+                {...motionProps}
+                transition={{ duration: 0.4, delay: reduceMotion ? 0 : 0.04 }}
+              >
+                <div className="about-mv__icon" aria-hidden="true">
+                  <Compass className="h-5 w-5" />
+                </div>
+                <h2 className="about-mv__heading">Our Mission</h2>
+                <div className="about-mv__copy">
+                  <p>
+                    Our mission is to help our clients make distinctive, lasting and substantial improvements in their
+                    performance, while building a great firm that attracts, develops, excites and retains exceptional
+                    people.
+                  </p>
+                  <p>
+                    We believe we succeed when our clients succeed. Solving the hardest problems requires the best
+                    people, and we believe talented people are drawn to meaningful challenges. We build our firm around
+                    that belief. These two parts of our mission reinforce one another and make our firm strong and
+                    enduring.
+                  </p>
+                </div>
+              </motion.article>
+
+              <motion.article
+                className="about-mv__card"
+                {...motionProps}
+                transition={{ duration: 0.4, delay: reduceMotion ? 0 : 0.1 }}
+              >
+                <div className="about-mv__icon" aria-hidden="true">
+                  <Eye className="h-5 w-5" />
+                </div>
+                <h2 className="about-mv__heading">Our Vision</h2>
+                <div className="about-mv__copy">
+                  <p>
+                    We aim to develop strong partnerships with our clients and support organizations facing today&apos;s
+                    economic challenges. We help them strengthen their businesses by evaluating and adopting advanced
+                    management approaches and innovative solutions.
+                  </p>
+                  <p>Our dynamic, results-oriented workforce brings a fresh perspective to every challenge.</p>
+                </div>
+              </motion.article>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="section-pad bg-white/70">
-        <div className="container-page">
-          <SectionHeading
-            eyebrow="Technologies"
-            title="Technologies mastered"
-            description="Technology platforms and languages highlighted in our company profile."
-          />
-          <div className="mt-8 overflow-x-auto rounded-2xl border border-navy/8 bg-white">
-            <table className="min-w-full text-left text-sm">
-              <thead className="bg-mist text-navy">
-                <tr>
-                  <th className="px-4 py-3 font-semibold">Technology</th>
-                  <th className="px-4 py-3 font-semibold">Use Case</th>
-                  <th className="px-4 py-3 font-semibold">Advantages</th>
-                </tr>
-              </thead>
-              <tbody>
-                {company.technologies.map((tech) => (
-                  <tr key={tech.name} className="border-t border-navy/8">
-                    <td className="px-4 py-3 font-medium text-navy">{tech.name}</td>
-                    <td className="px-4 py-3 text-navy/70">{tech.useCase}</td>
-                    <td className="px-4 py-3 text-navy/70">{tech.advantages}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+        <section className="about-band about-band--mist" aria-labelledby="who-we-serve-heading">
+          <div className="about-wrap">
+            <motion.div className="about-serve" {...motionProps}>
+              <p className="about-serve__eyebrow">Who We Serve</p>
+              <h2 id="who-we-serve-heading" className="about-serve__title">
+                Who We Serve
+              </h2>
+              <div className="about-serve__panel">
+                {audience.map((itemAudience) => {
+                  const Icon = itemAudience.icon;
+                  return (
+                    <article key={itemAudience.title} className="about-serve__item">
+                      <div className="about-serve__icon" aria-hidden="true">
+                        <Icon className="h-5 w-5" />
+                      </div>
+                      <h3 className="about-serve__name">{itemAudience.title}</h3>
+                      <p className="about-serve__text">{itemAudience.description}</p>
+                    </article>
+                  );
+                })}
+              </div>
+            </motion.div>
           </div>
-        </div>
-      </section>
+        </section>
+
+        <section className="about-band about-band--white" aria-labelledby="technologies-heading">
+          <div className="about-wrap">
+            <motion.div className="about-tech__intro" {...motionProps}>
+              <p className="eyebrow">Capabilities</p>
+              <h2 id="technologies-heading" className="about-tech__title">
+                Technologies We Master
+              </h2>
+              <p className="about-tech__subtitle">
+                Building reliable digital solutions with modern technologies and development platforms.
+              </p>
+            </motion.div>
+
+            <motion.div className="about-tech__grid" {...stagger}>
+              {technologies.map((tech) => {
+                const Icon = tech.icon;
+                return (
+                  <motion.article key={tech.name} className="about-tech__card" {...item}>
+                    <div className="about-tech__badge" aria-hidden="true">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <h3 className="about-tech__name">{tech.name}</h3>
+                    <p className="about-tech__label">Use case</p>
+                    <p className="about-tech__text">{tech.useCase}</p>
+                    <p className="about-tech__label">Advantages</p>
+                    <p className="about-tech__text">{tech.advantages}</p>
+                  </motion.article>
+                );
+              })}
+            </motion.div>
+          </div>
+        </section>
+      </div>
 
       <CtaBand />
     </>

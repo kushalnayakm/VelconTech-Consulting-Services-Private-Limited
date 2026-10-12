@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { company, navLinks } from '../../data/company';
-import logoFull from '../../assets/images/logo-full.jpeg';
+import { navLinks } from '../../data/company';
+import logoIcon from '../../assets/images/logo-icon.jpeg';
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -24,18 +24,21 @@ export default function Navbar() {
   }, [open]);
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition ${
-        scrolled || open ? 'border-b border-navy/10 bg-white/90 backdrop-blur-xl' : 'bg-transparent'
-      }`}
-    >
-      <div className="container-page flex items-center justify-between gap-4 py-3">
-        <Link to="/" className="flex min-w-0 items-center gap-3" onClick={() => setOpen(false)}>
+    <header className={`site-navbar ${scrolled || open ? 'site-navbar--solid' : ''}`}>
+      <div className="container-page site-navbar__inner">
+        <Link to="/" className="site-brand" onClick={() => setOpen(false)} aria-label="VelconTech home">
           <img
-            src={logoFull}
-            alt={`${company.shortName} logo`}
-            className="h-12 w-auto max-w-[220px] object-contain sm:h-14"
+            src={logoIcon}
+            alt=""
+            className="site-brand__logo"
+            width={80}
+            height={80}
           />
+          <span className="site-brand__text">
+            <span className="site-brand__name">VelconTech</span>
+            <span className="site-brand__legal">Consulting Services Private Limited</span>
+            <span className="site-brand__tagline">Where Technology Customizes</span>
+          </span>
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
@@ -62,7 +65,7 @@ export default function Navbar() {
 
         <button
           type="button"
-          className="inline-flex rounded-xl border border-navy/10 bg-white/80 p-2.5 text-navy lg:hidden"
+          className="inline-flex rounded-xl border border-navy/10 bg-white p-2.5 text-navy lg:hidden"
           aria-expanded={open}
           aria-controls="mobile-nav"
           aria-label={open ? 'Close menu' : 'Open menu'}
@@ -89,7 +92,7 @@ export default function Navbar() {
                   to={link.to}
                   onClick={() => setOpen(false)}
                   className={({ isActive }) =>
-                    `rounded-xl px-4 py-3 text-base font-medium ${
+                    `rounded-xl px-4 py-3 text-base font-medium transition hover:bg-navy/5 ${
                       isActive ? 'bg-emerald/10 text-emerald' : 'text-navy'
                     }`
                   }
