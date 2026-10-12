@@ -1,0 +1,132 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color: #102b46;
+  background-color: #f6f8f7;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background:
+    radial-gradient(circle at top left, rgba(8, 127, 98, 0.08), transparent 28%),
+    radial-gradient(circle at top right, rgba(184, 115, 75, 0.08), transparent 24%),
+    #f6f8f7;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+::selection {
+  background: rgba(8, 127, 98, 0.22);
+  color: #102b46;
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-pad {
+    @apply py-16 sm:py-20 lg:py-24;
+  }
+
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.22em] text-emerald;
+  }
+
+  .heading-display {
+    @apply font-display text-3xl font-bold tracking-tight text-navy sm:text-4xl lg:text-5xl;
+  }
+
+  .body-muted {
+    @apply text-base leading-relaxed;
+    color: rgba(16, 43, 70, 0.7);
+  }
+
+  .card-surface {
+    @apply rounded-2xl bg-white shadow-card backdrop-blur;
+    border: 1px solid rgba(16, 43, 70, 0.1);
+    background-color: rgba(255, 255, 255, 0.92);
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-emerald px-5 py-3 text-sm font-semibold text-white transition hover:bg-emerald-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-navy transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy;
+    border: 1px solid rgba(16, 43, 70, 0.15);
+  }
+
+  .btn-secondary:hover {
+    border-color: rgba(16, 43, 70, 0.3);
+    background-color: #fff;
+  }
+
+  .input-field {
+    @apply w-full rounded-xl bg-white px-4 py-3 text-sm text-navy outline-none transition focus:ring-2;
+    border: 1px solid rgba(16, 43, 70, 0.12);
+  }
+
+  .input-field::placeholder {
+    color: rgba(16, 43, 70, 0.4);
+  }
+
+  .input-field:focus {
+    border-color: #087f62;
+    --tw-ring-color: rgba(8, 127, 98, 0.2);
+  }
+
+  .label-field {
+    @apply mb-1.5 block text-sm font-medium text-navy;
+  }
+
+  .prose-blog {
+    @apply max-w-none;
+    color: rgba(16, 43, 70, 0.8);
+  }
+
+  .prose-blog h2 {
+    @apply mb-3 mt-10 font-display text-2xl font-bold text-navy;
+  }
+
+  .prose-blog h3 {
+    @apply mb-2 mt-8 font-display text-xl font-semibold text-navy;
+  }
+
+  .prose-blog p,
+  .prose-blog ul,
+  .prose-blog ol {
+    @apply mb-4 leading-relaxed;
+  }
+
+  .prose-blog ul {
+    @apply list-disc space-y-2 pl-5;
+  }
+
+  .prose-blog ol {
+    @apply list-decimal space-y-2 pl-5;
+  }
+
+  .prose-blog a {
+    @apply font-medium text-emerald underline-offset-2 hover:underline;
+  }
+
+  .prose-blog code {
+    @apply rounded px-1.5 py-0.5 text-[0.9em];
+    background: rgba(16, 43, 70, 0.05);
+  }
+}
