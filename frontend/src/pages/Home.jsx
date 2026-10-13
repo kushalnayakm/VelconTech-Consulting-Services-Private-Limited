@@ -2,6 +2,7 @@ import SEO from '../components/common/SEO';
 import CtaBand from '../components/common/CtaBand';
 import Hero from '../components/home/Hero';
 import ServicesOverview from '../components/home/ServicesOverview';
+import TrustedPartners from '../components/home/TrustedPartners';
 import FeaturedProjects from '../components/home/FeaturedProjects';
 import LatestArticles from '../components/home/LatestArticles';
 import { trustedClients } from '../data/company';
@@ -18,6 +19,7 @@ export default function Home() {
       />
       <Hero />
       <ServicesOverview />
+      <TrustedPartners />
       <FeaturedProjects />
 
       <section className="clients-section" aria-labelledby="trusted-clients-heading">

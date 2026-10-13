@@ -55,7 +55,7 @@ export default function Blog() {
             <circle cx="180" cy="120" r="3.5" fill="rgba(8,127,98,0.28)" />
             <circle cx="980" cy="88" r="2.5" fill="rgba(184,115,75,0.35)" />
             <circle cx="1080" cy="210" r="4" fill="rgba(8,127,98,0.18)" />
-            <circle cx="720" cy="56" r="2" fill="rgba(16,43,70,0.16)" />
+            <circle cx="720" cy="56" r="2" fill="rgba(18,59,93,0.16)" />
           </svg>
         </div>
 

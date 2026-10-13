@@ -15,7 +15,9 @@ import SEO from '../components/common/SEO';
 import CtaBand from '../components/common/CtaBand';
 import JobCard from '../components/careers/JobCard';
 import { jobs } from '../data/jobs';
-import careersHeroImage from '../assets/images/carrer.png';
+
+/** Served from `frontend/public/images/carrer.png` (source: project Images/carrer.png). */
+const careersHeroImage = `${import.meta.env.BASE_URL}images/carrer.png`;
 
 const BENEFITS = [
   { label: 'Innovative Work Culture', icon: Lightbulb },
@@ -145,9 +147,11 @@ export default function Careers() {
                 src={careersHeroImage}
                 alt="VelconTech team collaborating around a laptop"
                 className="careers-hero__image"
-                width={640}
-                height={480}
+                width={1030}
+                height={444}
                 decoding="async"
+                loading="eager"
+                fetchPriority="high"
               />
 
               {/* Live floating cards sit over the photo composition from carrer.png */}

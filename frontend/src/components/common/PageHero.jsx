@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 export default function PageHero({ eyebrow, title, description, children }) {
   return (
     <section className="relative overflow-hidden border-b border-navy/10 bg-hero-mesh">
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,rgba(16,43,70,0.04),transparent_45%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,rgba(18,59,93,0.04),transparent_45%)]" />
       <div className="container-page relative section-pad !pb-14 !pt-28 sm:!pt-32">
         <motion.div
           initial={{ opacity: 0, y: 18 }}

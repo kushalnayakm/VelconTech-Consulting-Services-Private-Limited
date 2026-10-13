@@ -131,7 +131,7 @@ export default function Solutions() {
           <svg className="solutions-hero__curves" viewBox="0 0 1200 260" fill="none" preserveAspectRatio="none">
             <path
               d="M540 50 C 700 20, 860 100, 1020 70 S 1180 30, 1280 55"
-              stroke="rgba(16,43,70,0.08)"
+              stroke="rgba(18,59,93,0.08)"
               strokeWidth="1.25"
             />
             <path

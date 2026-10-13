@@ -5,17 +5,17 @@ export default {
     extend: {
       colors: {
         navy: {
-          DEFAULT: '#102B46',
+          DEFAULT: '#123B5D',
           50: '#E8EEF4',
           100: '#D1DDE9',
           200: '#A3BBD3',
           300: '#7599BD',
           400: '#4777A7',
-          500: '#102B46',
-          600: '#0D2338',
-          700: '#0A1B2B',
-          800: '#06121D',
-          900: '#030910',
+          500: '#123B5D',
+          600: '#0E2F4A',
+          700: '#0A2338',
+          800: '#071825',
+          900: '#030C13',
         },
         emerald: {
           DEFAULT: '#087F62',
@@ -43,21 +43,22 @@ export default {
           800: '#4A2E1E',
           900: '#25170F',
         },
-        mist: '#F6F8F7',
+        mist: '#F4F6F8',
+        ink: '#253447',
       },
       fontFamily: {
         display: ['"Outfit"', 'system-ui', 'sans-serif'],
         sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
       },
       boxShadow: {
-        soft: '0 18px 50px -24px rgba(16, 43, 70, 0.35)',
-        card: '0 12px 40px -20px rgba(16, 43, 70, 0.25)',
+        soft: '0 18px 50px -24px rgba(18, 59, 93, 0.35)',
+        card: '0 12px 40px -20px rgba(18, 59, 93, 0.25)',
       },
       backgroundImage: {
         'hero-mesh':
-          'radial-gradient(ellipse 80% 60% at 20% 20%, rgba(8,127,98,0.18), transparent), radial-gradient(ellipse 70% 50% at 85% 15%, rgba(184,115,75,0.16), transparent), radial-gradient(ellipse 60% 40% at 70% 80%, rgba(16,43,70,0.12), transparent)',
+          'radial-gradient(ellipse 80% 60% at 20% 20%, rgba(8,127,98,0.18), transparent), radial-gradient(ellipse 70% 50% at 85% 15%, rgba(184,115,75,0.16), transparent), radial-gradient(ellipse 60% 40% at 70% 80%, rgba(18,59,93,0.12), transparent)',
         'section-fade':
-          'linear-gradient(180deg, #F6F8F7 0%, #FFFFFF 45%, #F6F8F7 100%)',
+          'linear-gradient(180deg, #F4F6F8 0%, #FFFFFF 45%, #F4F6F8 100%)',
       },
     },
   },
