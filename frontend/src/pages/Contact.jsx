@@ -1,4 +1,4 @@
-import { useId, useState } from 'react'
+import { useEffect, useId, useMemo, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import {
   ArrowRight,
@@ -30,11 +30,18 @@ const mapsDirectionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${
   `${mapsPlace.name}, ${mapsPlace.address}`,
 )}`
 const whatsappUrl = `https://wa.me/${company.phone.replace(/\D/g, '')}`
+const OTHER_SERVICE_VALUE = '__other__'
 
 export default function Contact() {
   const location = useLocation()
   const formId = useId()
   const presetService = location.state?.service || ''
+  const serviceInputRef = useRef(null)
+
+  const knownServices = useMemo(() => {
+    const titles = services.map((service) => service.title)
+    return new Set([...titles, 'General Inquiry'])
+  }, [])
 
   const [form, setForm] = useState({
     name: '',
@@ -45,20 +52,59 @@ export default function Contact() {
     message: '',
     consent: false,
   })
+  const [customServiceMode, setCustomServiceMode] = useState(
+    () => Boolean(presetService) && !knownServices.has(presetService),
+  )
   const [errors, setErrors] = useState({})
   const [status, setStatus] = useState({ type: '', message: '' })
   const [submitting, setSubmitting] = useState(false)
   const [mapFailed, setMapFailed] = useState(false)
 
-  function updateField(event) {
-    const { name, value, type, checked } = event.target
-    setForm((prev) => ({ ...prev, [name]: type === 'checkbox' ? checked : value }))
+  useEffect(() => {
+    if (!customServiceMode) return
+    serviceInputRef.current?.focus()
+  }, [customServiceMode])
+
+  function clearFieldError(name) {
     setErrors((prev) => {
       if (!prev[name]) return prev
       const next = { ...prev }
       delete next[name]
       return next
     })
+  }
+
+  function updateField(event) {
+    const { name, value, type, checked } = event.target
+    setForm((prev) => ({ ...prev, [name]: type === 'checkbox' ? checked : value }))
+    clearFieldError(name)
+  }
+
+  function handleServiceSelectChange(event) {
+    const { value } = event.target
+    if (value === OTHER_SERVICE_VALUE) {
+      setCustomServiceMode(true)
+      setForm((prev) => ({ ...prev, service: '' }))
+      clearFieldError('service')
+      return
+    }
+    setCustomServiceMode(false)
+    updateField(event)
+  }
+
+  function handleServiceInputChange(event) {
+    const { value } = event.target
+    if (knownServices.has(value)) {
+      setCustomServiceMode(false)
+    }
+    updateField(event)
+  }
+
+  function handleServiceInputKeyDown(event) {
+    if (event.key !== 'Escape') return
+    setCustomServiceMode(false)
+    setForm((prev) => ({ ...prev, service: '' }))
+    clearFieldError('service')
   }
 
   function validate() {
@@ -70,7 +116,11 @@ export default function Contact() {
     }
     if (!form.phone.trim()) next.phone = 'Phone is required.'
     if (!form.company.trim()) next.company = 'Company is required.'
-    if (!form.service) next.service = 'Select a service of interest.'
+    if (!form.service.trim()) {
+      next.service = customServiceMode
+        ? 'Describe your service requirement.'
+        : 'Select a service of interest.'
+    }
     if (!form.message.trim()) next.message = 'Message is required.'
     if (!form.consent) next.consent = 'Privacy consent is required.'
     return next
@@ -89,9 +139,14 @@ export default function Contact() {
 
     setSubmitting(true)
     try {
-      const result = await postJson('/api/contact', form)
+      const payload = {
+        ...form,
+        service: form.service.trim(),
+      }
+      const result = await postJson('/api/contact', payload)
       setStatus({ type: 'success', message: result.message })
       setErrors({})
+      setCustomServiceMode(false)
       setForm({
         name: '',
         email: '',
@@ -392,24 +447,51 @@ export default function Contact() {
                 <label className="contact-form__label" htmlFor={`${formId}-service`}>
                   Service of interest <span aria-hidden="true">*</span>
                 </label>
-                <select
-                  id={`${formId}-service`}
-                  name="service"
-                  className={`contact-form__input${errors.service ? ' is-invalid' : ''}`}
-                  required
-                  value={form.service}
-                  onChange={updateField}
-                  aria-invalid={Boolean(errors.service)}
-                  aria-describedby={errors.service ? `${formId}-service-error` : undefined}
-                >
-                  <option value="">Select a service</option>
+                {customServiceMode ? (
+                  <input
+                    ref={serviceInputRef}
+                    id={`${formId}-service`}
+                    name="service"
+                    type="text"
+                    className={`contact-form__input${errors.service ? ' is-invalid' : ''}`}
+                    required
+                    value={form.service}
+                    onChange={handleServiceInputChange}
+                    onKeyDown={handleServiceInputKeyDown}
+                    placeholder="Describe your service requirement"
+                    maxLength={160}
+                    list={`${formId}-service-options`}
+                    aria-invalid={Boolean(errors.service)}
+                    aria-describedby={errors.service ? `${formId}-service-error` : undefined}
+                    autoComplete="off"
+                  />
+                ) : (
+                  <select
+                    id={`${formId}-service`}
+                    name="service"
+                    className={`contact-form__input${errors.service ? ' is-invalid' : ''}`}
+                    required
+                    value={knownServices.has(form.service) ? form.service : ''}
+                    onChange={handleServiceSelectChange}
+                    aria-invalid={Boolean(errors.service)}
+                    aria-describedby={errors.service ? `${formId}-service-error` : undefined}
+                  >
+                    <option value="">Select a service</option>
+                    {services.map((service) => (
+                      <option key={service.slug} value={service.title}>
+                        {service.title}
+                      </option>
+                    ))}
+                    <option value="General Inquiry">General Inquiry</option>
+                    <option value={OTHER_SERVICE_VALUE}>Other</option>
+                  </select>
+                )}
+                <datalist id={`${formId}-service-options`}>
                   {services.map((service) => (
-                    <option key={service.slug} value={service.title}>
-                      {service.title}
-                    </option>
+                    <option key={service.slug} value={service.title} />
                   ))}
-                  <option value="General Inquiry">General Inquiry</option>
-                </select>
+                  <option value="General Inquiry" />
+                </datalist>
                 {errors.service ? (
                   <p id={`${formId}-service-error`} className="contact-form__error" role="alert">
                     {errors.service}
