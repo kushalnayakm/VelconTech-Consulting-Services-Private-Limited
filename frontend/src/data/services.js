@@ -293,7 +293,3 @@ export function getServiceBySlug(slug) {
 export function getPortfolioServices() {
   return services.filter((service) => service.portfolio);
 }
-
-export function getFeaturedServices() {
-  return services.filter((service) => service.featured);
-}

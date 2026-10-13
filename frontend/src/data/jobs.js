@@ -55,7 +55,3 @@ export const jobs = [
 export function getJobBySlug(slug) {
   return jobs.find((job) => job.slug === slug);
 }
-
-export function getJobTitles() {
-  return jobs.map((job) => job.title);
-}

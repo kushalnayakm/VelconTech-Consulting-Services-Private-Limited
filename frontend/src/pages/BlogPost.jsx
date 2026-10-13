@@ -3,62 +3,20 @@ import { Link, Navigate, useParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { motion, useReducedMotion } from 'framer-motion';
-import {
-  ArrowLeft,
-  ArrowRight,
-  CalendarDays,
-  Clock3,
-  Cloud,
-  Code2,
-  Cpu,
-  Database,
-  Layers,
-  ShieldCheck,
-  Workflow,
-} from 'lucide-react';
+import { ArrowLeft, ArrowRight, CalendarDays, Clock3 } from 'lucide-react';
 import SEO from '../components/common/SEO';
 import ShareButtons from '../components/blog/ShareButtons';
 import { getPostBySlug, getRelatedPosts } from '../lib/blog';
+import {
+  formatDisplayDate,
+  getCategoryIcon,
+  getCategoryImage,
+} from '../lib/blogDisplay';
 import logoIcon from '../assets/images/logo-icon.jpeg';
-import inventoryImage from '../assets/images/inventory.jpeg';
-import semiconductorImage from '../assets/images/semicontor.jpeg';
-import cybersecurityImage from '../assets/images/cs.jpeg';
-import cloudImage from '../assets/images/CC.jpeg';
-import dataAiImage from '../assets/images/images.jpeg';
-import softwareImage from '../assets/images/erp.jpeg';
-
-const categoryIcons = {
-  Semiconductor: Cpu,
-  Software: Code2,
-  Cybersecurity: ShieldCheck,
-  Operations: Workflow,
-  Cloud: Cloud,
-  'Data & AI': Database,
-};
-
-const categoryImages = {
-  Operations: inventoryImage,
-  Semiconductor: semiconductorImage,
-  Cybersecurity: cybersecurityImage,
-  Cloud: cloudImage,
-  'Data & AI': dataAiImage,
-  Software: softwareImage,
-};
-
-function formatDisplayDate(dateValue) {
-  if (!dateValue) return '';
-  const parsed = new Date(dateValue);
-  if (Number.isNaN(parsed.getTime())) return dateValue;
-  return parsed.toLocaleDateString('en-US', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
-  });
-}
 
 function RelatedThumb({ post }) {
-  const RelatedIcon = categoryIcons[post.category] || Layers;
-  const thumbSrc = post.coverImage || categoryImages[post.category] || null;
+  const RelatedIcon = getCategoryIcon(post.category);
+  const thumbSrc = post.coverImage || getCategoryImage(post.category);
   const [failed, setFailed] = useState(false);
   const showImage = Boolean(thumbSrc) && !failed;
 
@@ -98,8 +56,8 @@ export default function BlogPost() {
   const shareUrl =
     typeof window !== 'undefined' ? window.location.href : `https://www.velcontech.com/blog/${post.slug}`;
   const tags = Array.isArray(post.tags) ? post.tags.filter(Boolean) : [];
-  const CategoryIcon = categoryIcons[post.category] || Layers;
-  const heroImage = post.coverImage || categoryImages[post.category] || null;
+  const CategoryIcon = getCategoryIcon(post.category);
+  const heroImage = post.coverImage || getCategoryImage(post.category);
   const showHeroImage = Boolean(heroImage) && !heroFailed;
   const motionProps = reduceMotion
     ? {}

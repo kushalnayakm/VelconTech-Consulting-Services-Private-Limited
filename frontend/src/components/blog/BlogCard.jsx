@@ -1,57 +1,15 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { ArrowRight, CalendarDays, Clock3, UserRound } from 'lucide-react';
 import {
-  ArrowRight,
-  CalendarDays,
-  Clock3,
-  Cloud,
-  Code2,
-  Cpu,
-  Database,
-  Layers,
-  ShieldCheck,
-  UserRound,
-  Workflow,
-} from 'lucide-react';
-import inventoryImage from '../../assets/images/inventory.jpeg';
-import semiconductorImage from '../../assets/images/semicontor.jpeg';
-import cybersecurityImage from '../../assets/images/cs.jpeg';
-import cloudImage from '../../assets/images/CC.jpeg';
-import dataAiImage from '../../assets/images/images.jpeg';
-import softwareImage from '../../assets/images/erp.jpeg';
-
-const categoryIcons = {
-  Semiconductor: Cpu,
-  Software: Code2,
-  Cybersecurity: ShieldCheck,
-  Operations: Workflow,
-  Cloud: Cloud,
-  'Data & AI': Database,
-};
-
-const categoryImages = {
-  Operations: inventoryImage,
-  Semiconductor: semiconductorImage,
-  Cybersecurity: cybersecurityImage,
-  Cloud: cloudImage,
-  'Data & AI': dataAiImage,
-  Software: softwareImage,
-};
-
-function formatDisplayDate(dateValue) {
-  if (!dateValue) return '';
-  const parsed = new Date(dateValue);
-  if (Number.isNaN(parsed.getTime())) return dateValue;
-  return parsed.toLocaleDateString('en-US', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
-  });
-}
+  formatDisplayDate,
+  getCategoryIcon,
+  getCategoryImage,
+} from '../../lib/blogDisplay';
 
 export default function BlogCard({ post }) {
-  const CategoryIcon = categoryIcons[post.category] || Layers;
-  const coverImage = post.coverImage || categoryImages[post.category] || null;
+  const CategoryIcon = getCategoryIcon(post.category);
+  const coverImage = post.coverImage || getCategoryImage(post.category);
   const [imageFailed, setImageFailed] = useState(false);
   const showImage = Boolean(coverImage) && !imageFailed;
 
