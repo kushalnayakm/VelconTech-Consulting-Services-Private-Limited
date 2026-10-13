@@ -1,21 +1,38 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import ServiceIcon from './ServiceIcon';
 
 export default function ServiceCard({ service }) {
+  const visualName = service.visual || service.icon;
+
   return (
-    <Link
-      to={`/services/${service.slug}`}
-      className="card-surface group flex h-full flex-col p-6 transition hover:-translate-y-1 hover:shadow-soft"
-    >
-      <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald/10 text-emerald">
-        <ServiceIcon name={service.icon} />
+    <article className="service-card">
+      <div className="service-card__content">
+        <div className="service-card__header">
+          <div className="service-card__icon" aria-hidden="true">
+            <ServiceIcon name={service.icon} className="service-card__icon-svg" />
+          </div>
+          <h3 className="service-card__title">{service.title}</h3>
+        </div>
+
+        <ul className="service-card__list">
+          {service.offerings.map((item) => (
+            <li key={item}>
+              <CheckCircle2 className="service-card__check" aria-hidden="true" />
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+
+        <Link to={`/services/${service.slug}`} className="service-card__cta">
+          <span>Learn More</span>
+          <ArrowRight className="service-card__cta-arrow" aria-hidden="true" />
+        </Link>
       </div>
-      <h3 className="font-display text-xl font-semibold text-navy group-hover:text-emerald">{service.title}</h3>
-      <p className="mt-3 flex-1 text-sm leading-relaxed text-navy/65">{service.short}</p>
-      <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-emerald">
-        Learn more <ArrowRight className="h-4 w-4" />
-      </span>
-    </Link>
+
+      <div className="service-card__visual" aria-hidden="true">
+        <ServiceIcon name={visualName} className="service-card__visual-icon" />
+      </div>
+    </article>
   );
 }

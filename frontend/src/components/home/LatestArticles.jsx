@@ -9,14 +9,14 @@ export default function LatestArticles() {
     <section className="section-pad">
       <div className="container-page">
         <div className="max-w-3xl">
-          <p className="eyebrow mb-3">Insights</p>
+          <p className="eyebrow mb-2">Insights</p>
           <h2 className="font-display text-3xl font-bold tracking-tight text-navy sm:text-4xl">Latest Insights</h2>
-          <p className="body-muted mt-4 text-lg">
+          <p className="body-muted mt-3 text-base sm:text-lg">
             Short perspectives on cloud, data, cybersecurity, software and related technology topics.
           </p>
         </div>
 
-        <div className="mt-8 grid gap-4 md:grid-cols-3">
+        <div className="mt-7 grid gap-4 md:grid-cols-3">
           {latestPosts.map((post) => (
             <Link
               key={post.slug}
@@ -30,7 +30,7 @@ export default function LatestArticles() {
           ))}
         </div>
 
-        <div className="mt-8">
+        <div className="mt-6">
           <Link to="/blog" className="btn-secondary">
             Visit the Blog
             <ArrowRight className="h-4 w-4" />

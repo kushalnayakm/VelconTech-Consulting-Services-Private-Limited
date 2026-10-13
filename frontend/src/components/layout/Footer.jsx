@@ -7,8 +7,8 @@ import logoIcon from '../../assets/images/logo-icon.jpeg';
 export default function Footer() {
   return (
     <footer className="border-t border-navy/10 bg-navy text-white">
-      <div className="container-page section-pad !pb-10 !pt-16">
-        <div className="grid gap-12 lg:grid-cols-[1.3fr_1fr_1fr_1.1fr]">
+      <div className="container-page section-pad !pb-8 !pt-12">
+        <div className="grid gap-10 lg:grid-cols-[1.3fr_1fr_1fr_1.1fr]">
           <div>
             <div className="flex items-center gap-3">
               <img src={logoIcon} alt="" className="h-12 w-12 rounded-full bg-white object-contain p-1" />

@@ -1,29 +1,59 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, MapPin } from 'lucide-react';
+import {
+  ArrowRight,
+  ArrowUpRight,
+  BriefcaseBusiness,
+  Cloud,
+  Code2,
+  Database,
+  MapPin,
+  ShieldCheck,
+  WalletCards,
+  Workflow,
+} from 'lucide-react';
+
+const departmentMeta = {
+  Technology: { icon: Code2, tone: 'emerald' },
+  Finance: { icon: WalletCards, tone: 'copper' },
+  Operations: { icon: Workflow, tone: 'navy' },
+  'Data & AI': { icon: Database, tone: 'emerald' },
+  Cybersecurity: { icon: ShieldCheck, tone: 'navy' },
+  Cloud: { icon: Cloud, tone: 'emerald' },
+};
 
 export default function JobCard({ job }) {
+  const meta = departmentMeta[job.department] || { icon: BriefcaseBusiness, tone: 'emerald' };
+  const Icon = meta.icon;
+
   return (
-    <article className="card-surface flex h-full flex-col p-7">
-      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald">{job.department}</p>
-      <h2 className="mt-3 font-display text-2xl font-semibold text-navy">{job.title}</h2>
-      <p className="mt-3 flex-1 text-sm leading-relaxed text-navy/65">{job.summary}</p>
-      <div className="mt-5 flex flex-wrap gap-3 text-sm text-navy/70">
-        <span className="inline-flex items-center gap-1.5 rounded-lg bg-mist px-3 py-1.5">
-          <MapPin className="h-4 w-4 text-copper" />
+    <article className={`job-card job-card--${meta.tone}`}>
+      <Link to={`/careers/${job.slug}`} className="job-card__corner" aria-label={`Open ${job.title}`}>
+        <ArrowUpRight className="job-card__corner-icon" aria-hidden="true" />
+      </Link>
+
+      <div className="job-card__icon" aria-hidden="true">
+        <Icon />
+      </div>
+
+      <p className="job-card__department">{job.department}</p>
+      <h3 className="job-card__title">{job.title}</h3>
+      <p className="job-card__summary">{job.summary}</p>
+
+      <div className="job-card__meta">
+        <span className="job-card__meta-item">
+          <MapPin className="job-card__meta-icon" aria-hidden="true" />
           {job.location}
         </span>
-        <span className="rounded-lg bg-mist px-3 py-1.5">{job.type}</span>
+        <span className="job-card__meta-item">{job.type}</span>
       </div>
-      <p className="mt-4 text-sm text-navy/75">
-        <span className="font-semibold text-navy">Qualification:</span> {job.qualification}
-      </p>
-      <div className="mt-6 flex flex-wrap gap-3">
-        <Link to={`/careers/${job.slug}`} className="btn-secondary">
+
+      <div className="job-card__actions">
+        <Link to={`/careers/${job.slug}`} className="job-card__btn job-card__btn--secondary">
           View role
         </Link>
-        <Link to={`/careers/${job.slug}/apply`} className="btn-primary">
+        <Link to={`/careers/${job.slug}/apply`} className="job-card__btn job-card__btn--primary">
           Apply Now
-          <ArrowRight className="h-4 w-4" />
+          <ArrowRight className="job-card__btn-icon" aria-hidden="true" />
         </Link>
       </div>
     </article>

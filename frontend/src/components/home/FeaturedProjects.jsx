@@ -12,12 +12,12 @@ export default function FeaturedProjects() {
           title="Featured project work"
           description="Selected initiatives from our company profile spanning operations, data applications, payments and monitoring systems."
         />
-        <div className="mt-12 grid gap-5 lg:grid-cols-3">
+        <div className="mt-8 grid gap-5 lg:grid-cols-3">
           {projects.slice(0, 3).map((project) => (
             <ProjectCard key={project.slug} project={project} />
           ))}
         </div>
-        <div className="mt-8">
+        <div className="mt-6">
           <Link to="/projects" className="btn-secondary">
             Browse projects
           </Link>

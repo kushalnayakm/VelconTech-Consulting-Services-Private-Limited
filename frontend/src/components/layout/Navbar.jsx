@@ -5,6 +5,10 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { navLinks } from '../../data/company';
 import logoIcon from '../../assets/images/logo-icon.jpeg';
 
+function linkClassName({ isActive }) {
+  return `site-nav-link${isActive ? ' is-active' : ''}`;
+}
+
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -31,8 +35,8 @@ export default function Navbar() {
             src={logoIcon}
             alt=""
             className="site-brand__logo"
-            width={80}
-            height={80}
+            width={60}
+            height={60}
           />
           <span className="site-brand__text">
             <span className="site-brand__name">VelconTech</span>
@@ -41,31 +45,28 @@ export default function Navbar() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
+        <nav className="site-navbar__nav" aria-label="Primary">
           {navLinks.map((link) => (
             <NavLink
               key={link.to}
               to={link.to}
-              className={({ isActive }) =>
-                `rounded-lg px-3 py-2 text-sm font-medium transition ${
-                  isActive ? 'bg-navy/5 text-emerald' : 'text-navy/75 hover:bg-navy/5 hover:text-navy'
-                }`
-              }
+              end={link.to === '/'}
+              className={linkClassName}
             >
               {link.label}
             </NavLink>
           ))}
         </nav>
 
-        <div className="hidden items-center gap-3 lg:flex">
-          <Link to="/contact" className="btn-primary">
+        <div className="site-navbar__actions">
+          <Link to="/contact" className="site-navbar__cta">
             Talk to Our Team
           </Link>
         </div>
 
         <button
           type="button"
-          className="inline-flex rounded-xl border border-navy/10 bg-white p-2.5 text-navy lg:hidden"
+          className="site-navbar__menu-btn"
           aria-expanded={open}
           aria-controls="mobile-nav"
           aria-label={open ? 'Close menu' : 'Open menu'}
@@ -82,25 +83,24 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="border-t border-navy/10 bg-white lg:hidden"
+            className="site-navbar__mobile"
             aria-label="Mobile"
           >
-            <div className="container-page flex flex-col gap-1 py-4">
+            <div className="container-page site-navbar__mobile-inner">
               {navLinks.map((link) => (
                 <NavLink
                   key={link.to}
                   to={link.to}
+                  end={link.to === '/'}
                   onClick={() => setOpen(false)}
                   className={({ isActive }) =>
-                    `rounded-xl px-4 py-3 text-base font-medium transition hover:bg-navy/5 ${
-                      isActive ? 'bg-emerald/10 text-emerald' : 'text-navy'
-                    }`
+                    `site-nav-link site-nav-link--mobile${isActive ? ' is-active' : ''}`
                   }
                 >
                   {link.label}
                 </NavLink>
               ))}
-              <Link to="/contact" className="btn-primary mt-2" onClick={() => setOpen(false)}>
+              <Link to="/contact" className="site-navbar__cta site-navbar__cta--mobile" onClick={() => setOpen(false)}>
                 Talk to Our Team
               </Link>
             </div>

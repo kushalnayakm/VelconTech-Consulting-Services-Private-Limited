@@ -1,159 +1,205 @@
 export const services = [
   {
-    slug: 'cloud-computing',
-    title: 'Cloud Computing',
-    short:
-      'Flexible cloud infrastructure, platforms and managed services that help organizations scale securely.',
+    slug: 'ai-and-machine-learning',
+    title: 'AI and Machine Learning',
+    short: 'AI solutions spanning model development, generative applications, NLP and intelligent automation.',
     summary:
-      'Cloud computing services spanning infrastructure, platforms, applications and serverless functions — with storage and backup options tailored to business needs.',
+      'Artificial intelligence and machine learning services that help organizations evaluate, build and deploy practical AI capabilities.',
     offerings: [
+      'Artificial Intelligence Solutions',
+      'Machine Learning Model Development',
+      'Generative AI Applications',
+      'Natural Language Processing (NLP)',
+      'Intelligent Automation',
+      'AI Integration and Deployment',
+    ],
+    icon: 'BrainCircuit',
+    visual: 'BrainCircuit',
+    portfolio: true,
+    featured: true,
+  },
+  {
+    slug: 'data-management-and-analytics',
+    title: 'Data Engineering and Analytics',
+    short: 'Data engineering, analytics, business intelligence and decision-support capabilities.',
+    summary:
+      'Data engineering and analytics services that help teams organize information, improve data quality and support better decisions.',
+    offerings: [
+      'Data Engineering',
+      'Data Analytics and Visualization',
+      'Business Intelligence',
+      'Data Pipelines and Integration',
+      'Data Quality and Governance',
+      'Reporting and Decision Support',
+    ],
+    icon: 'Database',
+    visual: 'BarChart3',
+    portfolio: true,
+    featured: true,
+  },
+  {
+    slug: 'cloud-computing',
+    title: 'Cloud Computing and DevOps',
+    short: 'Cloud architecture, application delivery, CI/CD automation and infrastructure optimization.',
+    summary:
+      'Cloud computing and DevOps services covering architecture, migration, application delivery and operational excellence.',
+    offerings: [
+      'Cloud Architecture and Migration',
+      'Cloud Application Development',
       'Infrastructure as a Service (IaaS)',
       'Platform as a Service (PaaS)',
-      'Software as a Service (SaaS)',
-      'Functions as a Service (FaaS)',
-      'Storage and Backup Services',
+      'CI/CD Automation',
+      'Cloud Monitoring and Optimization',
     ],
     icon: 'Cloud',
+    visual: 'Server',
+    portfolio: true,
+    featured: true,
+  },
+  {
+    slug: 'networking-and-infrastructure',
+    title: 'Networking and Infrastructure',
+    short: 'Network design, monitoring, security and infrastructure management for reliable connectivity.',
+    summary:
+      'Networking and infrastructure services that support design, monitoring, security and optimization of connected environments.',
+    offerings: [
+      'Network Design and Configuration',
+      'Network Monitoring',
+      'Infrastructure Management',
+      'Network Security',
+      'Connectivity and Troubleshooting',
+      'Infrastructure Optimization',
+    ],
+    icon: 'Network',
+    visual: 'Network',
+    portfolio: true,
+    featured: true,
   },
   {
     slug: 'enterprise-software-solutions',
-    title: 'Enterprise Software Solutions',
-    short:
-      'Business systems that unify customers, operations, people and supply chains with actionable insight.',
+    title: 'ERP and Enterprise Applications',
+    short: 'ERP, CRM, HRM, SCM and enterprise application integration for core business processes.',
     summary:
-      'Enterprise software solutions that connect core business processes and analytics so teams can operate with clarity and control.',
+      'Enterprise application services that connect core business systems, automate processes and improve operational visibility.',
     offerings: [
-      'Customer Relationship Management (CRM)',
       'Enterprise Resource Planning (ERP)',
-      'Human Resource Management (HRM)',
-      'Supply Chain Management (SCM)',
-      'Business Intelligence (BI) and Analytics',
+      'Customer Relationship Management (CRM)',
+      'Human Resource Management Systems (HRM)',
+      'Supply Chain Management Systems (SCM)',
+      'Enterprise Application Integration',
+      'Business Process Automation',
     ],
     icon: 'Building2',
+    visual: 'Workflow',
+    portfolio: true,
+    featured: true,
   },
   {
-    slug: 'development-tools-and-platforms',
-    title: 'Development Tools and Platforms',
-    short:
-      'Modern development environments, version control, CI/CD and API management for delivery teams.',
+    slug: 'web-and-mobile-application-development',
+    title: 'Web and Mobile Application Development',
+    short: 'React, Node.js, Flutter, React Native and API development for modern digital products.',
     summary:
-      'Development tools and platforms that help engineering teams build, integrate and ship software with consistency.',
+      'Web and mobile application development services focused on modern frameworks, APIs and long-term application modernization.',
     offerings: [
-      'Integrated Development Environments (IDEs)',
-      'Version Control Systems (e.g., Git)',
-      'Continuous Integration / Continuous Deployment (CI/CD) tools',
-      'API Management',
+      'React Web Applications',
+      'Node.js Backend Development',
+      'Flutter Mobile Applications',
+      'React Native Applications',
+      'REST API Development and Integration',
+      'Application Maintenance and Modernization',
     ],
-    icon: 'Code2',
+    icon: 'MonitorSmartphone',
+    visual: 'Code2',
+    portfolio: true,
+    featured: true,
   },
   {
     slug: 'cybersecurity',
     title: 'Cybersecurity',
-    short:
-      'Protect endpoints, networks and identities with monitoring, encryption and threat intelligence.',
+    short: 'Security assessments, application and network protection, monitoring and compliance support.',
     summary:
-      'Cybersecurity services designed to strengthen defenses across devices, networks, identities and data.',
+      'Cybersecurity services designed to strengthen defenses across applications, networks and operational practices.',
     offerings: [
-      'Endpoint Protection',
+      'Security Assessments',
+      'Application Security',
       'Network Security',
-      'Identity and Access Management (IAM)',
-      'Threat Intelligence and Monitoring',
-      'Data Encryption',
+      'Vulnerability Management',
+      'Security Monitoring',
+      'Security Best Practices and Compliance Support',
     ],
-    icon: 'Shield',
+    icon: 'ShieldCheck',
+    visual: 'ShieldCheck',
+    portfolio: true,
+    featured: false,
   },
   {
-    slug: 'data-management-and-analytics',
-    title: 'Data Management and Analytics',
-    short:
-      'Databases, warehouses, visualization and AI platforms that turn data into decisions.',
+    slug: 'software-testing-and-quality-engineering',
+    title: 'Software Testing and Quality Engineering',
+    short: 'Functional, API and performance testing with automation and quality assurance practices.',
     summary:
-      'Data management and analytics capabilities spanning databases, big data, warehousing, visualization and machine learning platforms.',
+      'Software testing and quality engineering services that help teams validate functionality, performance and delivery quality.',
     offerings: [
-      'Database Management Systems (DBMS)',
-      'Big Data Solutions',
-      'Data Warehousing',
-      'Data Visualization Tools',
-      'Machine Learning and AI Platforms',
+      'Functional Testing',
+      'API Testing',
+      'Test Automation',
+      'Performance Testing',
+      'Software Quality Assurance',
+      'Defect Tracking and Reporting',
     ],
-    icon: 'Database',
+    icon: 'ClipboardCheck',
+    visual: 'ClipboardCheck',
+    portfolio: true,
+    featured: false,
   },
   {
-    slug: 'communication-and-collaboration',
-    title: 'Communication and Collaboration',
-    short:
-      'Email, team collaboration, video conferencing and project tools that keep people aligned.',
+    slug: 'it-consulting-and-outsourcing',
+    title: 'IT Consulting and Outsourcing Services',
+    short: 'Consulting, application management, process improvement, technology strategy and analytics.',
     summary:
-      'Communication and collaboration tools that support everyday teamwork across distributed and on-site organizations.',
+      'IT consulting and outsourcing services that align technology strategy with applications, processes and analytics.',
     offerings: [
-      'Email Services',
-      'Team Collaboration Platforms (Slack, Teams)',
-      'Video Conferencing (e.g., Zoom, Webex)',
-      'Project Management Tools',
+      'Consulting',
+      'Application Management',
+      'Process Improvement',
+      'Technology Strategy',
+      'Data Analytics',
     ],
-    icon: 'MessagesSquare',
-  },
-  {
-    slug: 'financial-technology',
-    title: 'Financial Technology',
-    short:
-      'Payment processing, online banking, personal finance and blockchain-oriented solutions.',
-    summary:
-      'Financial technology services covering digital payments, banking experiences and related finance platforms.',
-    offerings: [
-      'Payment Processing',
-      'Online Banking Solutions',
-      'Personal Finance Management',
-      'Data Visualization Tools',
-      'Blockchain and Cryptocurrency Solutions',
-    ],
-    icon: 'Wallet',
-  },
-  {
-    slug: 'consumer-software',
-    title: 'Consumer Software',
-    short:
-      'Operating systems, productivity suites, creative tools and entertainment software experiences.',
-    summary:
-      'Consumer software capabilities across operating systems, productivity, creative tooling and entertainment.',
-    offerings: [
-      'Operating Systems (OS)',
-      'Office Productivity Suites',
-      'Graphic Design and Video Editing Software',
-      'Gaming and Entertainment Software',
-    ],
-    icon: 'Smartphone',
+    icon: 'Briefcase',
+    visual: 'Briefcase',
+    portfolio: true,
+    featured: false,
   },
   {
     slug: 'semiconductor-services',
     title: 'Semiconductor Services',
-    short:
-      'Design verification, DFT, ATE services and production support for semiconductor programs.',
-    summary:
-      'Semiconductor services that support design verification, testability and production readiness.',
+    short: 'Design verification, DFT, ATE services and production support for semiconductor programs.',
+    summary: 'Semiconductor services that support design verification, testability and production readiness.',
     offerings: [
       'Design Verification',
-      'DFT',
-      'ATE Services',
+      'Design for Testability (DFT)',
+      'Automatic Test Equipment (ATE) Services',
       'Production Support',
     ],
     icon: 'Cpu',
+    visual: 'Cpu',
+    portfolio: true,
+    featured: true,
   },
   {
     slug: 'pcb-services',
     title: 'PCB Services',
-    short:
-      'PCB board design, manufacturing support and board testing for hardware programs.',
-    summary:
-      'PCB services covering board design, manufacturing and testing workflows.',
+    short: 'PCB board design, manufacturing support and board testing for hardware programs.',
+    summary: 'PCB services covering board design, manufacturing and testing workflows.',
     offerings: ['PCB Board Design', 'Manufacturing', 'Board Testing'],
     icon: 'CircuitBoard',
+    visual: 'CircuitBoard',
+    portfolio: true,
+    featured: true,
   },
   {
     slug: 'component-engineering',
-    title: 'Component Engineering',
-    short:
-      'Part selection, BOM scrubbing, alternatives and lifecycle data with compliance support.',
+    title: 'Component Engineering Services',
+    short: 'Part selection, BOM scrubbing, alternatives and lifecycle data with compliance support.',
     summary:
       'Component engineering services that help teams select parts, clean BOMs and manage lifecycle and compliance data.',
     offerings: [
@@ -165,25 +211,89 @@ export const services = [
       'Life Cycle Data',
     ],
     icon: 'Layers',
+    visual: 'Layers',
+    portfolio: true,
+    featured: false,
   },
   {
-    slug: 'it-consulting-and-outsourcing',
-    title: 'IT Consulting and Outsourcing',
-    short:
-      'Consulting, application management, process improvement, technology strategy and analytics.',
+    slug: 'development-tools-and-platforms',
+    title: 'Development Tools and Platforms',
+    short: 'Modern development environments, version control, CI/CD and API management for delivery teams.',
     summary:
-      'IT consulting and outsourcing services that align technology strategy with applications, processes and analytics.',
+      'Development tools and platforms that help engineering teams build, integrate and ship software with consistency.',
     offerings: [
-      'Consulting',
-      'Application Management',
-      'Process Improvement',
-      'Technology Strategy',
-      'Data Analytics',
+      'Integrated Development Environments (IDEs)',
+      'Version Control Systems (e.g., Git)',
+      'Continuous Integration / Continuous Deployment (CI/CD) tools',
+      'API Management',
     ],
-    icon: 'Briefcase',
+    icon: 'Code2',
+    visual: 'GitBranch',
+    portfolio: false,
+    featured: false,
+  },
+  {
+    slug: 'communication-and-collaboration',
+    title: 'Communication and Collaboration',
+    short: 'Email, team collaboration, video conferencing and project tools that keep people aligned.',
+    summary:
+      'Communication and collaboration tools that support everyday teamwork across distributed and on-site organizations.',
+    offerings: [
+      'Email Services',
+      'Team Collaboration Platforms (Slack, Teams)',
+      'Video Conferencing (e.g., Zoom, Webex)',
+      'Project Management Tools',
+    ],
+    icon: 'MessagesSquare',
+    visual: 'MessagesSquare',
+    portfolio: false,
+    featured: false,
+  },
+  {
+    slug: 'financial-technology',
+    title: 'Financial Technology',
+    short: 'Payment processing, online banking, personal finance and blockchain-oriented solutions.',
+    summary:
+      'Financial technology services covering digital payments, banking experiences and related finance platforms.',
+    offerings: [
+      'Payment Processing',
+      'Online Banking Solutions',
+      'Personal Finance Management',
+      'Data Visualization Tools',
+      'Blockchain and Cryptocurrency Solutions',
+    ],
+    icon: 'Wallet',
+    visual: 'Wallet',
+    portfolio: false,
+    featured: false,
+  },
+  {
+    slug: 'consumer-software',
+    title: 'Consumer Software',
+    short: 'Operating systems, productivity suites, creative tools and entertainment software experiences.',
+    summary:
+      'Consumer software capabilities across operating systems, productivity, creative tooling and entertainment.',
+    offerings: [
+      'Operating Systems (OS)',
+      'Office Productivity Suites',
+      'Graphic Design and Video Editing Software',
+      'Gaming and Entertainment Software',
+    ],
+    icon: 'Smartphone',
+    visual: 'Smartphone',
+    portfolio: false,
+    featured: false,
   },
 ];
 
 export function getServiceBySlug(slug) {
   return services.find((service) => service.slug === slug);
+}
+
+export function getPortfolioServices() {
+  return services.filter((service) => service.portfolio);
+}
+
+export function getFeaturedServices() {
+  return services.filter((service) => service.featured);
 }

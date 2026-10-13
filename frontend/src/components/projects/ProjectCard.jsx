@@ -1,14 +1,29 @@
 import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
+
+const categoryTone = {
+  Operations: 'emerald',
+  'Finance & Operations': 'copper',
+  'Data Applications': 'navy',
+  'Project Monitoring': 'emerald',
+  'Document Management': 'navy',
+  'Digital Transactions': 'emerald',
+  Mobile: 'copper',
+  'Public Sector': 'emerald',
+};
 
 export default function ProjectCard({ project }) {
+  const tone = categoryTone[project.category] || 'emerald';
+
   return (
-    <Link
-      to={`/projects/${project.slug}`}
-      className="card-surface group block p-6 transition hover:-translate-y-1 hover:shadow-soft"
-    >
-      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-copper">{project.category}</p>
-      <h3 className="mt-3 font-display text-xl font-semibold text-navy group-hover:text-emerald">{project.title}</h3>
-      <p className="mt-3 text-sm leading-relaxed text-navy/65">{project.summary}</p>
+    <Link to={`/projects/${project.slug}`} className={`project-card project-card--${tone}`}>
+      <p className="project-card__category">{project.category}</p>
+      <h3 className="project-card__title">{project.title}</h3>
+      <p className="project-card__summary">{project.summary}</p>
+      <span className="project-card__link">
+        View project
+        <ArrowRight className="project-card__link-icon" aria-hidden="true" />
+      </span>
     </Link>
   );
 }

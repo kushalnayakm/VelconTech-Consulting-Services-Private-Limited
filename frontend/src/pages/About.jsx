@@ -1,279 +1,362 @@
-import { motion, useReducedMotion } from 'framer-motion';
+import { Link } from 'react-router-dom'
 import {
+  ArrowRight,
   Building2,
-  Code2,
-  Compass,
+  Check,
+  Clock3,
   Eye,
-  FileCode2,
+  Handshake,
   Landmark,
-  Network,
-  Server,
-  Smartphone,
-  Terminal,
-} from 'lucide-react';
-import SEO from '../components/common/SEO';
-import CtaBand from '../components/common/CtaBand';
+  Layers,
+  LineChart,
+  Settings2,
+  ShieldCheck,
+  Sparkles,
+  Target,
+  Users,
+  UsersRound,
+} from 'lucide-react'
+import SEO from '../components/common/SEO'
+import SectionHeading from '../components/common/SectionHeading'
+import CtaBand from '../components/common/CtaBand'
+import { company } from '../data/company'
+import { projects } from '../data/projects'
+import { getPortfolioServices } from '../data/services'
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 16 },
-  visible: { opacity: 1, y: 0 },
-};
+const portfolioServices = getPortfolioServices()
 
-const audience = [
+const featureCards = [
+  {
+    icon: Users,
+    title: 'Client-Centric Approach',
+    description: company.values[0].description,
+    accent: 'emerald',
+  },
+  {
+    icon: Layers,
+    title: 'End-to-End Expertise',
+    description:
+      'Bringing Business, Technology, Services, and Process together to maximize the end-user experience in the digital world.',
+    accent: 'teal',
+  },
+  {
+    icon: Sparkles,
+    title: 'Innovation Focused',
+    description: company.values[3].description,
+    accent: 'copper',
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Reliable & Scalable',
+    description: company.values[2].description,
+    accent: 'navy',
+  },
+]
+
+const whoWeServe = [
   {
     title: 'Businesses',
-    description: 'Building capabilities that support operational efficiency and business growth.',
+    description:
+      'Building capabilities that support operational efficiency and business growth.',
     icon: Building2,
+    accent: 'emerald',
   },
   {
     title: 'Institutions',
     description: 'Supporting digital transformation and technology adoption.',
     icon: Landmark,
+    accent: 'teal',
   },
   {
     title: 'Government Organizations',
-    description: 'Supporting technology-enabled services and process improvement.',
-    icon: Network,
+    description:
+      'Supporting technology-enabled services and process improvement.',
+    icon: UsersRound,
+    accent: 'copper',
   },
   {
     title: 'Other Entities',
     description: 'Providing technology consulting and customized solutions.',
-    icon: Compass,
+    icon: Layers,
+    accent: 'navy',
   },
-];
+]
 
-const technologies = [
+const whyItems = [
   {
-    name: 'Flutter',
-    useCase: 'Cross-platform mobile applications.',
-    advantages: 'High performance, rich UI widgets and a single codebase.',
-    icon: Smartphone,
+    icon: Settings2,
+    title: company.values[1].title,
+    description: company.values[1].description,
+    accent: 'teal',
   },
   {
-    name: 'React Native',
-    useCase: 'Cross-platform mobile applications.',
-    advantages: 'Large community, JavaScript-based development and flexibility.',
-    icon: Code2,
+    icon: LineChart,
+    title: company.values[0].title,
+    description: company.values[0].description,
+    accent: 'emerald',
   },
   {
-    name: 'Java',
-    useCase: 'Native Android applications.',
-    advantages: 'Strong control over application functionality and access to Android features.',
-    icon: Terminal,
+    icon: Handshake,
+    title: company.values[2].title,
+    description: company.values[2].description,
+    accent: 'copper',
   },
   {
-    name: 'HTML / CSS / JavaScript',
-    useCase: 'Website and frontend development.',
-    advantages: 'Fundamental web technologies with broad browser support.',
-    icon: FileCode2,
+    icon: Clock3,
+    title: company.values[3].title,
+    description: company.values[3].description,
+    accent: 'navy',
+  },
+]
+
+const stats = [
+  {
+    icon: Users,
+    value: String(company.customersAndPartners.length),
+    label: 'Clients & Partners',
   },
   {
-    name: 'Node.js',
-    useCase: 'Web servers and real-time applications.',
-    advantages: 'JavaScript outside the browser and a large ecosystem.',
-    icon: Server,
+    icon: LineChart,
+    value: String(projects.length),
+    label: 'Featured Projects',
   },
   {
-    name: 'Python',
-    useCase: 'Web development, data science and scripting.',
-    advantages: 'Readable syntax, ease of learning and versatility.',
-    icon: Code2,
+    icon: Layers,
+    value: String(portfolioServices.length),
+    label: 'Service Capabilities',
   },
-];
+  {
+    icon: Building2,
+    value: String(company.salesPresence.length),
+    label: 'Global Presence Regions',
+  },
+]
 
 export default function About() {
-  const reduceMotion = useReducedMotion();
-
-  const motionProps = reduceMotion
-    ? {}
-    : {
-        initial: 'hidden',
-        whileInView: 'visible',
-        viewport: { once: true, amount: 0.2 },
-        transition: { duration: 0.4, ease: 'easeOut' },
-        variants: fadeUp,
-      };
-
-  const stagger = reduceMotion
-    ? {}
-    : {
-        initial: 'hidden',
-        whileInView: 'visible',
-        viewport: { once: true, amount: 0.12 },
-        variants: {
-          hidden: {},
-          visible: { transition: { staggerChildren: 0.07 } },
-        },
-      };
-
-  const item = reduceMotion
-    ? {}
-    : {
-        variants: {
-          hidden: { opacity: 0, y: 14 },
-          visible: { opacity: 1, y: 0, transition: { duration: 0.35, ease: 'easeOut' } },
-        },
-      };
-
   return (
     <>
       <SEO
-        title="About Us"
-        description="Learn about VelconTech Consulting Services Private Limited — mission, vision, who we serve and technologies we master."
+        title="About"
+        description="Learn about VelconTech Consulting Services Private Limited, our mission, vision, and the organizations we serve."
         path="/about"
       />
 
-      <div className="about-shell">
-        <section className="about-band about-band--mist">
-          <div className="about-wrap">
-            <motion.div className="about-intro" {...motionProps}>
-              <p className="eyebrow">About Us</p>
-              <div className="about-intro__grid">
-                <div className="about-intro__main">
-                  <div className="about-intro__accent" aria-hidden="true" />
-                  <div>
-                    <h1 className="about-intro__title">About VelconTech</h1>
-                    <p className="about-intro__subtitle">Consulting, Analytics and Technology Services</p>
-                    <div className="about-intro__copy">
-                      <p>
-                        VelconTech is a consulting, analytics and technology services firm focused on Data, Cloud and
-                        Emerging Technologies. Our uniqueness lies in bringing Business, Technology, Services and Process
-                        together to maximize the end-user experience in today&apos;s digital world.
-                      </p>
-                      <p>
-                        We work with clients on challenging problems in Automation, Service Delivery, Digital Business,
-                        AI and NLP, increasing innovation velocity to deliver NextGen Services.
-                      </p>
-                      <p>
-                        VelconTech also provides process consulting services for process definition, implementation,
-                        auditing and training.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <aside className="about-intro__aside" aria-hidden="true">
-                  <div className="about-intro__panel">
-                    <span>Data</span>
-                    <span>Cloud</span>
-                    <span>AI &amp; NLP</span>
-                    <span>Automation</span>
-                    <span>Digital Business</span>
-                    <span>Process Consulting</span>
-                  </div>
-                </aside>
+      <section className="about-hero" aria-labelledby="about-hero-heading">
+        <div className="about-hero__glow about-hero__glow--one" aria-hidden="true" />
+        <div className="about-hero__glow about-hero__glow--two" aria-hidden="true" />
+        <div className="about-hero__dots" aria-hidden="true" />
+        <div className="about-hero__curve" aria-hidden="true" />
+
+        <div className="container-page about-hero__shell">
+          <div className="about-hero__grid">
+            <div className="about-hero__copy">
+              <p className="about-kicker">
+                <span>About Us</span>
+              </p>
+              <h1 id="about-hero-heading" className="about-hero__title">
+                Technology with Real-World <em>Impact</em>
+              </h1>
+              <p className="about-hero__lead">{company.intro}</p>
+              <div className="about-hero__actions">
+                <a href="#about-mission" className="btn-primary about-hero__cta">
+                  Our Journey
+                  <ArrowRight size={16} aria-hidden="true" />
+                </a>
+                <Link to="/contact" className="btn-secondary about-hero__cta-secondary">
+                  Talk to Our Team
+                  <ArrowRight size={16} aria-hidden="true" />
+                </Link>
               </div>
-            </motion.div>
-          </div>
-        </section>
+            </div>
 
-        <section className="about-band about-band--white">
-          <div className="about-wrap">
-            <div className="about-mv">
-              <motion.article
-                className="about-mv__card"
-                {...motionProps}
-                transition={{ duration: 0.4, delay: reduceMotion ? 0 : 0.04 }}
-              >
-                <div className="about-mv__icon" aria-hidden="true">
-                  <Compass className="h-5 w-5" />
-                </div>
-                <h2 className="about-mv__heading">Our Mission</h2>
-                <div className="about-mv__copy">
-                  <p>
-                    Our mission is to help our clients make distinctive, lasting and substantial improvements in their
-                    performance, while building a great firm that attracts, develops, excites and retains exceptional
-                    people.
-                  </p>
-                  <p>
-                    We believe we succeed when our clients succeed. Solving the hardest problems requires the best
-                    people, and we believe talented people are drawn to meaningful challenges. We build our firm around
-                    that belief. These two parts of our mission reinforce one another and make our firm strong and
-                    enduring.
-                  </p>
-                </div>
-              </motion.article>
-
-              <motion.article
-                className="about-mv__card"
-                {...motionProps}
-                transition={{ duration: 0.4, delay: reduceMotion ? 0 : 0.1 }}
-              >
-                <div className="about-mv__icon" aria-hidden="true">
-                  <Eye className="h-5 w-5" />
-                </div>
-                <h2 className="about-mv__heading">Our Vision</h2>
-                <div className="about-mv__copy">
-                  <p>
-                    We aim to develop strong partnerships with our clients and support organizations facing today&apos;s
-                    economic challenges. We help them strengthen their businesses by evaluating and adopting advanced
-                    management approaches and innovative solutions.
-                  </p>
-                  <p>Our dynamic, results-oriented workforce brings a fresh perspective to every challenge.</p>
-                </div>
-              </motion.article>
+            <div className="about-feature-grid" role="list">
+              {featureCards.map((card) => {
+                const Icon = card.icon
+                return (
+                  <article
+                    key={card.title}
+                    className={`about-feature-card about-feature-card--${card.accent}`}
+                    role="listitem"
+                  >
+                    <span className="about-feature-card__icon" aria-hidden="true">
+                      <Icon size={18} strokeWidth={2} />
+                    </span>
+                    <div>
+                      <h2>{card.title}</h2>
+                      <p>{card.description}</p>
+                    </div>
+                  </article>
+                )
+              })}
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section className="about-band about-band--mist" aria-labelledby="who-we-serve-heading">
-          <div className="about-wrap">
-            <motion.div className="about-serve" {...motionProps}>
-              <p className="about-serve__eyebrow">Who We Serve</p>
-              <h2 id="who-we-serve-heading" className="about-serve__title">
-                Who We Serve
-              </h2>
-              <div className="about-serve__panel">
-                {audience.map((itemAudience) => {
-                  const Icon = itemAudience.icon;
-                  return (
-                    <article key={itemAudience.title} className="about-serve__item">
-                      <div className="about-serve__icon" aria-hidden="true">
-                        <Icon className="h-5 w-5" />
-                      </div>
-                      <h3 className="about-serve__name">{itemAudience.title}</h3>
-                      <p className="about-serve__text">{itemAudience.description}</p>
-                    </article>
-                  );
-                })}
-              </div>
-            </motion.div>
+      <section
+        id="about-mission"
+        className="about-mvv"
+        aria-labelledby="about-mvv-heading"
+      >
+        <div className="container-page about-mvv__shell">
+          <h2 id="about-mvv-heading" className="sr-only">
+            Mission, vision, and values
+          </h2>
+          <div className="about-mvv__grid">
+            <article className="about-mvv-card about-mvv-card--mission">
+              <span className="about-mvv-card__icon" aria-hidden="true">
+                <Target size={22} strokeWidth={1.9} />
+              </span>
+              <h3>Our Mission</h3>
+              <p>{company.mission}</p>
+            </article>
+
+            <article className="about-mvv-card about-mvv-card--vision">
+              <span className="about-mvv-card__icon" aria-hidden="true">
+                <Eye size={22} strokeWidth={1.9} />
+              </span>
+              <h3>Our Vision</h3>
+              <p>{company.about[2]}</p>
+            </article>
+
+            <article className="about-mvv-card about-mvv-card--values">
+              <span className="about-mvv-card__icon" aria-hidden="true">
+                <Sparkles size={22} strokeWidth={1.9} />
+              </span>
+              <h3>Our Values</h3>
+              <ul className="about-values-list">
+                {company.values.map((value) => (
+                  <li key={value.title}>
+                    <Check size={14} strokeWidth={2.4} aria-hidden="true" />
+                    <span>{value.title}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section className="about-band about-band--white" aria-labelledby="technologies-heading">
-          <div className="about-wrap">
-            <motion.div className="about-tech__intro" {...motionProps}>
-              <p className="eyebrow">Capabilities</p>
-              <h2 id="technologies-heading" className="about-tech__title">
-                Technologies We Master
-              </h2>
-              <p className="about-tech__subtitle">
-                Building reliable digital solutions with modern technologies and development platforms.
+      <section className="about-stats" aria-labelledby="about-stats-heading">
+        <div className="container-page">
+          <h2 id="about-stats-heading" className="sr-only">
+            Company overview
+          </h2>
+          <div className="about-stats__panel">
+            {stats.map((stat) => {
+              const Icon = stat.icon
+              return (
+                <div key={stat.label} className="about-stats__item">
+                  <span className="about-stats__icon" aria-hidden="true">
+                    <Icon size={18} strokeWidth={2} />
+                  </span>
+                  <div>
+                    <p className="about-stats__value">{stat.value}</p>
+                    <p className="about-stats__label">{stat.label}</p>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="about-serve" aria-labelledby="about-serve-heading">
+        <div className="container-page about-serve__shell">
+          <div className="about-serve__heading">
+            <p className="about-kicker">
+              <span>Who We Serve</span>
+            </p>
+            <h2 id="about-serve-heading" className="about-serve__title">
+              Who We Serve
+            </h2>
+          </div>
+
+          <div className="about-serve__grid">
+            {whoWeServe.map((item) => {
+              const Icon = item.icon
+              return (
+                <article
+                  key={item.title}
+                  className={`about-serve-card about-serve-card--${item.accent}`}
+                >
+                  <span className="about-serve-card__icon" aria-hidden="true">
+                    <Icon size={22} strokeWidth={1.9} />
+                  </span>
+                  <h3>{item.title}</h3>
+                  <p>{item.description}</p>
+                </article>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="about-why" aria-labelledby="about-why-heading">
+        <div className="container-page about-why__shell">
+          <div className="about-why__grid">
+            <div className="about-why__copy">
+              <p className="about-kicker">
+                <span>Why VelconTech</span>
               </p>
-            </motion.div>
+              <h2 id="about-why-heading" className="about-why__title">
+                More than a service provider, a <em>technology partner.</em>
+              </h2>
+              <p className="about-why__lead">{company.about[1]}</p>
+              <Link to="/contact" className="btn-primary about-why__cta">
+                Talk to Our Team
+                <ArrowRight size={16} aria-hidden="true" />
+              </Link>
+            </div>
 
-            <motion.div className="about-tech__grid" {...stagger}>
-              {technologies.map((tech) => {
-                const Icon = tech.icon;
+            <div className="about-why__features">
+              {whyItems.map((item) => {
+                const Icon = item.icon
                 return (
-                  <motion.article key={tech.name} className="about-tech__card" {...item}>
-                    <div className="about-tech__badge" aria-hidden="true">
-                      <Icon className="h-5 w-5" />
+                  <article
+                    key={item.title}
+                    className={`about-why-item about-why-item--${item.accent}`}
+                  >
+                    <span className="about-why-item__icon" aria-hidden="true">
+                      <Icon size={18} strokeWidth={2} />
+                    </span>
+                    <div>
+                      <h3>{item.title}</h3>
+                      <p>{item.description}</p>
                     </div>
-                    <h3 className="about-tech__name">{tech.name}</h3>
-                    <p className="about-tech__label">Use case</p>
-                    <p className="about-tech__text">{tech.useCase}</p>
-                    <p className="about-tech__label">Advantages</p>
-                    <p className="about-tech__text">{tech.advantages}</p>
-                  </motion.article>
-                );
+                  </article>
+                )
               })}
-            </motion.div>
+            </div>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
 
-      <CtaBand />
+      <section className="about-tech" aria-labelledby="about-tech-heading">
+        <div className="container-page about-tech__shell">
+          <SectionHeading
+            eyebrow="Capabilities"
+            title="Technologies We Work With"
+            description="A practical stack spanning cloud, data, AI, and enterprise application delivery."
+          />
+          <div className="about-tech__grid">
+            {company.technologies.map((tech) => (
+              <article key={tech.name} className="about-tech__card">
+                <h3 className="about-tech__name">{tech.name}</h3>
+                <p className="about-tech__label">Use case</p>
+                <p className="about-tech__text">{tech.useCase}</p>
+                <p className="about-tech__label">Advantages</p>
+                <p className="about-tech__text">{tech.advantages}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <CtaBand
+        title="Ready to build with VelconTech?"
+        description="Share your goals and we will help you shape a clear, practical next step."
+      />
     </>
-  );
+  )
 }
